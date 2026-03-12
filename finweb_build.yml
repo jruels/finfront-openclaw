@@ -9,7 +9,7 @@ trigger:
     - '*.yml'
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: student-lab-pool
 
 variables:
   - name: artifactName
@@ -31,3 +31,4 @@ steps:
     artifact: '$(artifactName)'
     publishLocation: 'pipeline'
   displayName: 'Publish Frontend Pipeline Artifact'
+  condition: and(succeeded(), ne(variables['skip_build'], 'true'))
